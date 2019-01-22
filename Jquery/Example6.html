@@ -1,0 +1,59 @@
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.js">
+
+    </script>
+    <script>
+        //creating a button and showing the price of the phone when the button is clicked
+
+        $(function () {
+            $("button").click(function () {
+                var productElem = $(this).closest(".product");
+                var price =productElem.data("price");
+                var priceElem = $("<p/>").text(price + "Rs").css("color", "red");
+                productElem.append(priceElem);
+                $(this).hide();
+
+            })
+        })
+
+    </script>
+    <style>
+        .product{
+            padding:50px;
+            display:inline-block;
+        }
+        </style>
+
+</head>
+
+<body>
+    <ul>
+        <li class="product" data-price="4500">
+            <h2>Nokia 6600</h2>
+            <button>GET PRICE</button>
+        </li>
+        <li class="product" data-price="50000">
+            <h2>Mi note 4</h2>
+            <button>GET PRICE</button>
+        </li>
+        <li class="product" data-price="60000">
+            <h2>OnePlus </h2>
+            <button>GET PRICE</button>
+        </li>
+        <li class="product" data-price="90000">
+            <h2>iPhone</h2>
+            <button>GET PRICE</button>
+        </li>
+        <li class="product" data-price="65000">
+            <h2>Samsung</h2>
+            <button>GET PRICE</button>
+        </li>
+        <li class="product" data-price="15000">
+            <h2>Mi note 5</h2>
+            <button>GET PRICE</button>
+        </li>
+
+    </ul>
+</body>
+
+</html>

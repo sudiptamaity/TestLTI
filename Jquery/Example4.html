@@ -1,0 +1,78 @@
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.js">
+
+    </script>
+    <script>
+
+        $(function () {
+            $(".up").click(function () {
+                // var row = $(this).parent().parent();
+                //var prevrow=row.prev();
+                //prevrow.before(row);
+
+
+                var row = $(this).closest("tr");
+                var prevrow = row.prev();
+                row.insertBefore(prevrow);
+            })
+
+
+
+            $(".down").click(function () {
+                //var row = $(this).parent().parent();
+                //var nextrow=row.next();
+                // nextrow.after(row);
+
+                var row = $(this).closest("tr");
+                var nextrow = row.next();
+                row.insertAfter(nextrow);
+
+
+            })
+
+        })
+    </script>
+
+</head>
+
+<body>
+    <table align="center" border="1">
+        <thead>
+            <th>Empno</th>
+            <th>Name</th>
+            <th>Move</th>
+
+        </thead>
+        <tr>
+            <td>1001</td>
+            <td>Sudi</td>
+            <td>
+                <a href="#" class="up">&#x2191</a>
+                <a href="#" class="down">&#x2193</a>
+            </td>
+        </tr>
+
+
+
+
+        <tr>
+            <td>1002</td>
+            <td>melissa</td>
+            <td>
+                <a href="#" class="up">&#x2191</a>
+                <a href="#" class="down">&#x2193</a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>1003</td>
+            <td>rishika</td>
+            <td>
+                <a href="#" class="up">&#x2191</a>
+                <a href="#" class="down">&#x2193</a>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

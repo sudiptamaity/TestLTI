@@ -1,0 +1,42 @@
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.js">
+
+    </script>
+    <script>
+        //this function is called by JQuery when
+        //the DOM is ready
+        $(function () {
+           //using jQuery DOM traversal API
+           $("#products").find("li").css("color","red");
+          $("#products").children("li").css("color","red");
+          $("#services").find("li").first().css("color","green");
+          $("#produts").children("li").css("color","red");c
+          $("li").last().prev().prev().css("color","blue");
+          $("#brand li").first().parent().hide();
+          $("#brand").children().hide();
+         
+        })
+    </script>
+
+</head>
+
+<body>
+    <ul id="products">
+        <li>Laptop</li>
+        <li>Mobile</li>
+        <ul id="brand">
+            <li>Sony</li>
+            <li>Apple</li>
+            <li>Samsung</li>
+        </ul>
+    </ul>
+    <ul id="services">
+        <li>Email</li>
+        <li>SMS</li>
+        <li>Chat</li>
+    </ul>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.js">
+
+    </script>
+    <script>
+        //this function is called by JQuery when
+        //the DOM is ready
+        $(function () {
+            //using CSS style selectors in jQuery
+           // $("li").css("color","red");
+           $("#products li,#services li").css("color","orange");
+            $("#products li").css("color","red");
+            $("#brand li").css("color","green");
+            //$("#services li:last").css("color","green");
+            //$("#services > li").css("color","orange");
+            //$("#products > li").css("color","blue");
+            
+            
+        })
+    </script>
+
+</head>
+
+<body>
+    <ul id="products">
+        <li>Laptop</li>
+        <li>Mobile</li>
+        <ul id="brand">
+            <li>Sony</li>
+            <li>Apple</li>
+            <li>Samsung</li>
+        </ul>
+    </ul>
+    <ul id="services">
+        <li>Email</li>
+        <li>SMS</li>
+        <li>Chat</li>
+    </ul>
+</body>
+
+</html>

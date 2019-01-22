@@ -1,0 +1,128 @@
+TEST PHOBNE BOOK
+
+
+package com.lti.training.day2.basics;
+
+public class TestPhoneBook {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+    Contact c1=new Contact("Melissa","123456789","abc@gmail.com","20-05-1995");
+    Contact c2=new Contact("lissa","12456789","ab@gmail.com","20-04-1995");
+    Contact c3=new Contact("elissa","123456789","abc@gmail.com","20-05-1995");
+    PhoneBook pb=new PhoneBook();
+   pb.add(c1);
+   pb.add(c2);
+
+   pb.add(c3);
+   pb.display();
+
+  Contact c= pb.searchByName("elissa");
+  System.out.println("The searched details are:");
+  if(c!=null)
+	  System.out.println(c.getName()+" \t "+c.getEmail()+" \t "+c.getDob()+" \t "+c.getNumber());
+  else
+	  System.out.println("No matching records!");
+ 
+	}
+
+}
+ PHONEBOOK
+package com.lti.training.day2.basics;
+
+public class PhoneBook {
+	
+	private Contact[] contacts;
+	private int count;   //default value of integer is 0
+	
+	public PhoneBook() //default constructor
+	{
+		contacts = new Contact[100];
+	}
+	
+	//parameterized constructor
+	public PhoneBook(int noOfEntries) {
+		contacts=new Contact[noOfEntries];
+	}
+	
+	public void add(Contact contact )
+	{
+		contacts[count++]=contact;
+	}
+	
+	public void display() {
+		for(int i=0;i<count;i++) {
+		System.out.println("Contact details:"+contacts[i].getName()+" \t "+contacts[i].getNumber()+" \t "+ contacts[i].getEmail()+" \t "+ contacts[i].getDob());
+		}
+		
+	}
+	
+	public Contact searchByName(String name) {
+		for(int i=0;i<count;i++)
+		if(contacts[i].getName()==name)
+				return contacts[i];
+		
+		return null;
+	
+		
+	}
+	public Object searchByNumber(String number) {
+		return null;
+	}
+	public	void clear() {
+		
+		
+	}
+
+}
+
+
+
+CONTACT:
+
+package com.lti.training.day2.basics;
+
+public class Contact {
+	private String name;
+	private String number;
+	private String email;
+	private String dob;
+	
+	//constructor
+	public Contact(String name, String number, String email, String dob) {
+		super();
+		this.name = name;
+		this.number = number;
+		this.email = email;
+		this.dob = dob;
+	}
+	
+	//getters and setters
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getNumber() {
+		return number;
+	}
+	public void setNumber(String number) {
+		this.number = number;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getDob() {
+		return dob;
+	}
+	public void setDob(String dob) {
+		this.dob = dob;
+	}
+	
+
+}
+

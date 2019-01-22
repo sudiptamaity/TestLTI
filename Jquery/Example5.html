@@ -1,0 +1,43 @@
+<head>
+        <script src="https://code.jquery.com/jquery-3.3.1.js">
+    
+        </script>
+        <script>
+    //creating a button and showing the price of the phone when the button is clicked
+           
+    $(function () {
+               $("button").click(function(){
+                   
+                //creating a new DOM elemnet
+                //var priceElem = $("<p>4500 Rs</p>");
+                   var priceElem = $("<p/>").text("4500 Rs").css("color","red");
+                   
+                   
+                   //calling the porice function
+                   //$(".product").find("p").remove(); 
+                 
+                   $(".product").append(priceElem);
+                   //$("button").hide(); 
+                   //$(this).hide(); 
+                   $(".product").find("button").remove();
+            
+               })
+            
+            
+            })
+        
+        </script>
+    
+    </head>
+    
+    <body>
+        <ul>
+            <li class="product">
+                <h2>Nokia 6600</h2>
+                <button>GET PRICE</button>
+            </li>
+
+        </ul>
+    </body>
+    
+    </html>

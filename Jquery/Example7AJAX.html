@@ -1,0 +1,50 @@
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.js">
+
+    </script>
+    <script>
+
+        //pulling data from the json file into the ajax 
+        $(function () {
+            $("#loadbtn").click(function () {
+                $.ajax({
+                    url: "employees.json",
+                    type: "GET",
+                    dataType: "json",
+                    timeout: 3000,
+                    beforeSend: function () {
+                        //code for animation of please wait ....here
+                    },
+                    complete: function () {
+                            //code for stopping the animation here
+                        },
+                        success: function(response) {
+                            //alert(JSON.stringify(response));
+                            $.each(response,function(index,emp){
+                                var row=$("<tr/>");
+                                var col1=$("<td/>").text(emp.empno);
+                                var col2=$("<td/>").text(emp.name);
+                                var col3=$("<td/>").text(emp.salary);
+                                row.append(col1);
+                                row.append(col2);
+                                row.append(col3);
+                                $("#tbl").append(row);
+
+                            })
+                        
+                        }
+                        })
+            })
+        })
+    </script>
+
+</head>
+
+<body>
+    <button id="loadbtn">Load Employees</button>
+    <table id="tbl">
+
+    </table>
+</body>
+
+</html>

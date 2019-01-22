@@ -1,0 +1,8 @@
+[
+    {"empno":1001,"name":"John", "salary":1000.0},
+    {"empno":1002,"name":"Ram", "salary":1500.0},
+    {"empno":1003,"name":"Ali", "salary":1800.0},
+    {"empno":1004,"name":"Amar", "salary":2000.0},
+    {"empno":1005,"name":"Mina", "salary":7000.0}
+
+]

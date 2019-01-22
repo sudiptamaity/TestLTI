@@ -1,0 +1,3202 @@
+
+SQL*Plus: Release 10.2.0.1.0 - Beta on Mon Jan 7 09:39:46 2019
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+SQL> CONNECT HR
+Enter password:
+Connected.
+SQL> set linesize 140
+SQL> set pagesize 30
+SQL>
+SQL> set serveroutput on;
+SQL> declare
+  2  a number(3);
+  3  begin
+  4   a:=100;
+  5  dbms_output.put_line(a);
+  6  end;
+  7  /
+100
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2  vsal employees.salary%type;
+  3  begin
+  4   select salary into vsal from employees where first_name='Valli';
+  5  dbms_output.put_line(vsal);
+  6  end;
+  7  /
+4800
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2  vsal employees.salary%type;
+  3  begin
+  4   select salary into vsal from employees where first_name='Valli';
+  5  dbms_output.put_line(' the salary is ' || vsal);
+  6  end;
+  7  /
+the salary is 4800
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2  vsal employees.salary%type;
+  3  begin
+  4   select salary into vsal from employees where first_name='Valli';
+  5  if vsal>5000 then
+  6  dbms_output.put_line(' good salary ' );
+  7  else
+  8  dbms_output.put_line(' bad salary ');
+  9  end if;
+ 10  --dbms_output.put_line(' the salary is ' || vsal);
+ 11  end;
+ 12  /
+bad salary
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2  vsal employees.salary%type;
+  3  begin
+  4   select salary into vsal from employees where first_name='Valli';
+  5  if vsal>10000 then
+  6  dbms_output.put_line(' excellent  salary ' );
+  7  elsif vsal>6000 then
+  8  dbms_output.put_line(' good salary ' );
+  9  elsif vsal>4000 then
+ 10  dbms_output.put_line(' avg salary ' );
+ 11  else
+ 12  dbms_output.put_line(' bad salary ');
+ 13  end if;
+ 14  --dbms_output.put_line(' the salary is ' || vsal);
+ 15  end;
+ 16  /
+avg salary
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2  a number(3):=1;
+  3  begin
+  4  loop
+  5  dbms_output.put_line(a);
+  6  a:=a+1;
+  7  exit when a>20;
+  8  end loop;
+  9  end;
+ 10  /
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2  a number(3):=0;
+  3  begin
+  4  loop
+  5  dbms_output.put_line(a);
+  6  a:=a+2;
+  7  exit when a>10;
+  8  end loop;
+  9  end;
+ 10  /
+0
+2
+4
+6
+8
+10
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2  a number(3):=0;
+  3  begin
+  4  loop
+  5  dbms_output.put_line(a);
+  6  a:=a+2;
+  7  exit when a>20;
+  8  end loop;
+  9  end;
+ 10  /
+0
+2
+4
+6
+8
+10
+12
+14
+16
+18
+20
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2  a number(3):=2;
+  3  begin
+  4  loop
+  5  dbms_output.put_line(a);
+  6  a:=a+2;
+  7  exit when a>20;
+  8  end loop;
+  9  end;
+ 10  /
+2
+4
+6
+8
+10
+12
+14
+16
+18
+20
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2  a number(3):=1;
+  3  begin
+  4  while(a<=10)
+  5  loop
+  6  dbms_output.put_line(a);
+  7  a:=a+1;
+  8  end loop;
+  9  end;
+ 10  /
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2  a number(3):=1;
+  3  begin
+  4  while(a mod 2=10)
+  5  loop
+  6  dbms_output.put_line(a);
+  7  a:=a+1;
+  8  end loop;
+  9  end;
+ 10  /
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2  a number(3):=1;
+  3  begin
+  4  while(a mod 2=0)
+  5  loop
+  6  dbms_output.put_line(a);
+  7  a:=a+1;
+  8  end loop;
+  9  end;
+ 10  /
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2  a number(3):=1;
+  3  begin
+  4  while(mod(a,2)=0)
+  5  loop
+  6  dbms_output.put_line(a);
+  7  a:=a+1;
+  8  end loop;
+  9  end;
+ 10  /
+
+PL/SQL procedure successfully completed.
+
+ 
+SQL*Plus: Release 10.2.0.1.0 - Beta on Mon Jan 7 10:17:07 2019
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+SQL> connect hr;
+Enter password:
+Connected.
+SQL> set serveroutput on;
+SQL> declare
+  2  a number(3):=1;
+  3  begin
+  4  while(a<=10)
+  5  loop
+  6  if (mod(a,2)=0) then
+  7  dbms_output.put_line(a);
+  8  end if ;
+  9  a:=a+1;
+ 10
+ 11  end loop;
+ 12  end;
+ 13  /
+2
+4
+6
+8
+10
+
+PL/SQL procedure successfully completed.
+
+SQL> begin
+  2  for i in 1..10
+  3  loop
+  4  dbms_output.put_line(i);
+  5  end loop;
+  6  end;
+  7  /
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+PL/SQL procedure successfully completed.
+
+SQL> --FOR
+SQL> begin
+  2  for i in reverse  1..10
+  3  loop
+  4  dbms_output.put_line(i);
+  5  end loop;
+  6  end;
+  7  /
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+
+PL/SQL procedure successfully completed.
+
+SQL> --FOR
+SQL> begin
+  2  for i in 10..1
+  3  loop
+  4  dbms_output.put_line(i);
+  5  end loop;
+  6  end;
+  7  /
+
+PL/SQL procedure successfully completed.
+
+SQL> --FOR
+SQL> begin
+  2  for i in 1..10
+  3  loop
+  4  dbms_output.put_line(i);
+  5  i:=i+2;
+  6  end loop;
+  7  end;
+  8  /
+i:=i+2;
+*
+ERROR at line 5:
+ORA-06550: line 5, column 1:
+PLS-00363: expression 'I' cannot be used as an assignment target
+ORA-06550: line 5, column 1:
+PL/SQL: Statement ignored
+
+
+SQL> --FOR
+SQL> begin
+  2  for i in 1..10
+  3  loop
+  4  dbms_output.put_line(i+2);
+  5
+  6  end loop;
+  7  end;
+  8  /
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+
+PL/SQL procedure successfully completed.
+
+SQL> --FOR
+SQL> begin
+  2  for i in 1..10
+  3  loop
+  4  if mod(i,2)=0 then
+  5  dbms_output.put_line(i);
+  6  end if;
+  7  end loop;
+  8  end;
+  9  /
+2
+4
+6
+8
+10
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  begin
+  2  for i in 1..10
+  3  loop
+  4  if mod(i,2)=0 then
+  5  dbms_output.put_line(i);
+  6  end if;
+  7  end loop;
+  8* end;
+SQL> create or replace procedure proce1
+  2  as
+  3  vsal employees.salary%type;
+  4   begin
+  5    select salary into vsal from employees where first_name='Valli';
+  6    dbms_output.put_line(vsal);
+  7    end;
+  8  /
+
+Procedure created.
+
+SQL> exec proce1
+4800
+
+PL/SQL procedure successfully completed.
+
+SQL>
+SQL> create or replace procedure proce2
+  2  as
+  3  vsal employees.salary%type;
+  4   begin
+  5    select salary into vsal from employees where first_name='Valli';
+  6  if vsal<5000 then
+  7  vsal:=vsal+2000;
+  8  dbms_output.put_line(vsal);
+  9  end if;
+ 10    end;
+ 11   /
+
+Procedure created.
+
+SQL> exec proce2
+6800
+
+PL/SQL procedure successfully completed.
+
+SQL>
+SQL> create or replace procedure proce2
+  2  as
+  3  vsal employees.salary%type;
+  4   begin
+  5    select salary into vsal from employees where first_name='Valli';
+  6  if vsal<5000 then
+  7  update employees
+  8  set salary=vsal+2000 where
+  9  first_name='Valli'
+ 10
+ 11
+ 12  dbms_output.put_line(vsal);
+ 13  end if;
+ 14    end;
+ 15   /
+
+Warning: Procedure created with compilation errors.
+
+SQL>
+SQL> create or replace procedure proce2
+  2  as
+  3  vsal employees.salary%type;
+  4   begin
+  5    select salary into vsal from employees where first_name='Valli';
+  6  if vsal<5000 then
+  7  update employees
+  8  set salary=vsal+2000 where
+  9  first_name='Valli';
+ 10
+ 11  end if;
+ 12    end;
+ 13   /
+
+Procedure created.
+
+SQL> exec proce2
+
+PL/SQL procedure successfully completed.
+
+SQL> select salary from employees where first_name='Valli';
+
+    SALARY
+----------
+      6800
+
+SQL> rollback
+  2  ;
+
+Rollback complete.
+
+SQL> select salary from employees where first_name='Valli';
+
+    SALARY
+----------
+      4800
+
+SQL>
+SQL> create or replace procedure proce2
+  2  as
+  3  vsal employees.salary%type;
+  4   begin
+  5    select salary into vsal from employees where first_name='Valli';
+  6  if vsal<5000 then
+  7  update employees
+  8  set salary=vsal+2000 where
+  9  first_name='Valli';
+ 10
+ 11  end if;
+ 12    end;
+ 13   /
+
+Procedure created.
+
+SQL>   select salary into vsal from employees where first_name='Valli';
+  select salary into vsal from employees where first_name='Valli'
+                     *
+ERROR at line 1:
+ORA-00905: missing keyword
+
+
+SQL> select salary from employees where first_name='Valli';
+
+    SALARY
+----------
+      4800
+
+SQL>
+SQL> create or replace procedure proce2
+  2  as
+  3  vsal employees.salary%type;
+  4   begin
+  5    select salary into vsal from employees where first_name='Valli';
+  6  if vsal<5000 then
+  7  update employees
+  8  set salary=vsal+2000 where
+  9  first_name='Valli';
+ 10
+ 11  end if;
+ 12    end;
+ 13   /
+
+Procedure created.
+
+SQL> exec proce2
+
+PL/SQL procedure successfully completed.
+
+SQL>   select salary into vsal from employees where first_name='Valli';
+  select salary into vsal from employees where first_name='Valli'
+                     *
+ERROR at line 1:
+ORA-00905: missing keyword
+
+
+SQL> select salary from employees where first_name='Valli';
+
+    SALARY
+----------
+      6800
+
+SQL> commit
+  2  ;
+
+Commit complete.
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select salary from employees where first_name='Valli';
+
+    SALARY
+----------
+      6800
+
+SQL>
+SQL> create or replace procedure proce2
+  2  as
+  3  vsal employees.salary%type;
+  4   begin
+  5    select salary into vsal from employees where first_name='Valli';
+  6  if vsal<5000 then
+  7  update employees
+  8  set salary=vsal+2000 where
+  9  first_name='Valli';
+ 10
+ 11  end if;
+ 12    end;
+ 13    end;
+ 14  create or replace procedure proce2
+ 15  as
+ 16  vsal employees.salary%type;
+ 17   begin
+ 18    select salary into vsal from employees where first_name='Valli';
+ 19  if vsal<5000 then
+ 20  update employees
+ 21  set salary=salary+2000 where
+ 22  first_name='Valli';
+ 23
+ 24  end if;
+ 25    end;
+ 26   //
+ 27  /
+
+Warning: Procedure created with compilation errors.
+
+SQL>
+SQL> create or replace procedure proce2
+  2  as
+  3  vsal employees.salary%type;
+  4   begin
+  5    select salary into vsal from employees where first_name='Valli';
+  6  if vsal<5000 then
+  7  update employees
+  8  set salary=salary+2000 where
+  9  first_name='Valli';
+ 10
+ 11  end if;
+ 12    end;
+ 13   /
+
+Procedure created.
+
+SQL> select salary from employees where first_name='Valli';
+
+    SALARY
+----------
+      6800
+
+SQL> declare
+  2  vename varchar2(20);
+  3  vsal employees.salary%type;
+  4  begin
+  5  vename:='&name1';
+  6  select salary into vsal from employees where first_name=vename;
+  7  dbms_output.put_line(vsal);
+  8  end;
+  9  /
+Enter value for name1: Amit
+old   5: vename:='&name1';
+new   5: vename:='Amit';
+6200
+
+PL/SQL procedure successfully completed.
+
+SQL> /
+Enter value for name1: Adam
+old   5: vename:='&name1';
+new   5: vename:='Adam';
+8200
+
+PL/SQL procedure successfully completed.
+
+SQL> /
+Enter value for name1: Alana
+old   5: vename:='&name1';
+new   5: vename:='Alana';
+3100
+
+PL/SQL procedure successfully completed.
+
+SQL> select sysdate to_date('01-Jan-2011') from dual;
+select sysdate to_date('01-Jan-2011') from dual
+                      *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select sysdate, to_date('01-Jan-2011') from dual;
+
+SYSDATE   TO_DATE('
+--------- ---------
+07-JAN-19 01-JAN-11
+
+SQL>
+SQL> create or replace procedure proce2
+  2  as
+  3  vsal employees.salary%type;
+  4  begin
+  5  vename:='&name1';
+  6  select salary into vsal from employees where first_name='Valli';
+  7  if(vsal<5000) then
+  8  proce1;
+  9  end if;
+ 10  end;
+ 11  /
+Enter value for name1:
+old   5: vename:='&name1';
+new   5: vename:='';
+
+Warning: Procedure created with compilation errors.
+
+SQL>
+SQL> create or replace procedure proce2
+  2  as
+  3  vsal employees.salary%type;
+  4  begin
+  5  vename:='&name1';
+  6  select salary into vsal from employees where first_name='Valli';
+  7  if(vsal<5000) then
+  8  proce1;
+  9  end if;
+ 10  end;
+ 11  /
+Enter value for name1:
+old   5: vename:='&name1';
+new   5: vename:='';
+
+Warning: Procedure created with compilation errors.
+
+SQL>
+SQL> create or replace procedure proce2
+  2  as
+  3  vsal employees.salary%type;
+  4  begin
+  5  select salary into vsal from employees where first_name='Valli';
+  6  if(vsal<5000) then
+  7  proce1;
+  8  end if;
+  9  end;
+ 10  /
+
+Procedure created.
+
+SQL>
+SQL> exec proce2;
+
+PL/SQL procedure successfully completed.
+
+SQL> create or replace procedure proce2
+  2  begin
+  3  dbms_output.put_line('bad sal');
+  4  end;
+  5  /
+
+Warning: Procedure created with compilation errors.
+
+SQL> create or replace procedure proce1
+  2  begin
+  3  dbms_output.put_line('bad sal');
+  4  end;
+  5  /
+
+Warning: Procedure created with compilation errors.
+
+SQL>
+SQL> create or replace procedure proce2(pename varchar2)
+  2  as
+  3  vsal employees.salary%type;
+  4  begin
+  5  select salary into vsal from employees where first_name=pename;
+  6  if(vsal<5000) then
+  7  dbms_output.put_line('good salary');
+  8  end if;
+  9  end;
+ 10  /
+
+Procedure created.
+
+SQL> exec proce2 ('Adam')
+
+PL/SQL procedure successfully completed.
+
+SQL> exec proce2('Adam');
+
+PL/SQL procedure successfully completed.
+
+SQL>
+SQL> create or replace procedure proce2(pename varchar2)
+  2  as
+  3  vsal employees.salary%type;
+  4  begin
+  5  select salary into vsal from employees where first_name=pename;
+  6  if(vsal<5000) then
+  7  dbms_output.put_line('good salary');
+  8  end if;
+  9  end;
+ 10  /
+
+Procedure created.
+
+SQL> exec proce2('Adam')
+
+PL/SQL procedure successfully completed.
+
+SQL> set serveroutput on;
+SQL>
+SQL> create or replace procedure proce2(pename varchar2)
+  2  as
+  3  vsal employees.salary%type;
+  4  begin
+  5  select salary into vsal from employees where first_name=pename;
+  6  if(vsal<5000) then
+  7  dbms_output.put_line('good salary');
+  8  end if;
+  9  end;
+ 10  /
+
+Procedure created.
+
+SQL> exec proce2 ('Adam')
+
+PL/SQL procedure successfully completed.
+
+SQL>
+SQL> create or replace procedure proce2(pename varchar2)
+  2  as
+  3  vsal employees.salary%type;
+  4  begin
+  5  select salary into vsal from employees where first_name=pename;
+  6  if(vsal<5000) then
+  7     dbms_output.put_line('good salary');
+  8  end if;
+  9  end;
+ 10  /
+
+Procedure created.
+
+SQL>
+SQL> exec proce2 ('Adam')
+
+PL/SQL procedure successfully completed.
+
+SQL>
+SQL> create or replace procedure proce2(pename varchar2)
+  2  as
+  3  vsal employees.salary%type;
+  4  begin
+  5  select salary into vsal from employees where first_name=pename;
+  6  if(vsal>5000) then
+  7     dbms_output.put_line('good salary');
+  8  end if;
+  9  end;
+ 10  /
+
+Procedure created.
+
+SQL> exec proce2 ('Adam')
+good salary
+
+PL/SQL procedure successfully completed.
+
+SQL>
+SQL> create or replace procedure proce2(pename varchar2, incr number)
+  2  as
+  3  vsal employees.salary%type;
+  4  begin
+  5  select salary into vsal from employees where first_name=pename;
+  6  if(vsal<8000) then
+  7     dbms_output.put_line(vsal+incr);
+  8  end if;
+  9  end;
+ 10  /
+
+Procedure created.
+
+SQL> exec proce2
+BEGIN proce2; END;
+
+      *
+ERROR at line 1:
+ORA-06550: line 1, column 7:
+PLS-00306: wrong number or types of arguments in call to 'PROCE2'
+ORA-06550: line 1, column 7:
+PL/SQL: Statement ignored
+
+
+SQL> exec proce2('Adam',2000)
+
+PL/SQL procedure successfully completed.
+
+SQL> select salary from employees where first_name ='Adam';
+
+    SALARY
+----------
+      8200
+
+SQL>
+SQL> create or replace procedure proce2(pename varchar2, incr number)
+  2  as
+  3  vsal employees.salary%type;
+  4  begin
+  5  select salary into vsal from employees where first_name=pename;
+  6  if(vsal<9000) then
+  7     dbms_output.put_line(vsal+incr);
+  8  end if;
+  9  end;
+ 10  /
+
+Procedure created.
+
+SQL> exec proce2;
+BEGIN proce2; END;
+
+      *
+ERROR at line 1:
+ORA-06550: line 1, column 7:
+PLS-00306: wrong number or types of arguments in call to 'PROCE2'
+ORA-06550: line 1, column 7:
+PL/SQL: Statement ignored
+
+
+SQL> exec proce2('Adam',3000)
+11200
+
+PL/SQL procedure successfully completed.
+
+SQL>
+SQL> create or replace procedure proce2(pename varchar2, incr number)
+  2  as
+  3  vsal employees.salary%type;
+  4  begin
+  5  select salary into vsal from employees where first_name=pename;
+  6  if(vsal<9000) then
+  7  update employees set salary=salary+incr where first_name=pename;
+  8  --  dbms_output.put_line(vsal+incr);
+  9  end if;
+ 10  end;
+ 11  /
+
+Procedure created.
+
+SQL> exec proce2('Adam',3000)
+
+PL/SQL procedure successfully completed.
+
+SQL> select salary from employees where first_name ='Adam';
+
+    SALARY
+----------
+     11200
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select salary from employees where first_name ='Adam';
+
+    SALARY
+----------
+      8200
+
+SQL> commit;
+
+Commit complete.
+
+SQL>
+SQL> create or replace procedure proce2(pename varchar2, incr number)
+  2  as
+  3  vsal employees.salary%type;
+  4  begin
+  5  select salary into vsal from employees where first_name=pename;
+  6  if(vsal<9000) then
+  7  update employees set salary=salary+incr where first_name=pename;
+  8  --  dbms_output.put_line(vsal+incr);
+  9  end if;
+ 10  end;
+ 11  /
+
+Procedure created.
+
+SQL>
+SQL> create or replace procedure proce2(pename varchar2, incr number)
+  2  as
+  3  vsal employees.salary%type;
+  4  begin
+  5  select salary into vsal from employees where first_name=pename;
+  6  if(vsal<9000) then
+  7  update employees set salary=salary+incr where first_name=pename;
+  8    dbms_output.put_line('old salary ' ||vsal);
+  9  select salary into vsal from employees where first_name=pename;
+ 10    dbms_output.put_line('new  salary ' ||vsal);
+ 11
+ 12  end if;
+ 13  end;
+ 14  /
+
+Procedure created.
+
+SQL> exec proce2('Adam',3000)
+old salary 8200
+new  salary 11200
+
+PL/SQL procedure successfully completed.
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select salary from employees where first_name ='Adam';
+
+    SALARY
+----------
+      8200
+
+SQL>
+SQL> create or replace procedure out_demo(pdno number, incr number)
+  2  as
+  3  begin
+  4  select count(employee_id) into ptot from employees where department_id=pdno;
+  5
+  6  end;
+  7  /
+
+Warning: Procedure created with compilation errors.
+
+SQL>
+SQL> create or replace procedure out_demo(pdno number, ptot out number)
+  2  as
+  3  begin
+  4  select count(employee_id) into ptot from employees where department_id = pdno;
+  5  end;
+  6  /
+
+Procedure created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select round(months_between(sysdate,'01-JAN-2011')*30) from employees;
+
+ROUND(MONTHS_BETWEEN(SYSDATE,'01-JAN-2011')*30)
+-----------------------------------------------
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+
+ROUND(MONTHS_BETWEEN(SYSDATE,'01-JAN-2011')*30)
+-----------------------------------------------
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+
+ROUND(MONTHS_BETWEEN(SYSDATE,'01-JAN-2011')*30)
+-----------------------------------------------
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+
+ROUND(MONTHS_BETWEEN(SYSDATE,'01-JAN-2011')*30)
+-----------------------------------------------
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+
+ROUND(MONTHS_BETWEEN(SYSDATE,'01-JAN-2011')*30)
+-----------------------------------------------
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+
+ROUND(MONTHS_BETWEEN(SYSDATE,'01-JAN-2011')*30)
+-----------------------------------------------
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+
+ROUND(MONTHS_BETWEEN(SYSDATE,'01-JAN-2011')*30)
+-----------------------------------------------
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+
+ROUND(MONTHS_BETWEEN(SYSDATE,'01-JAN-2011')*30)
+-----------------------------------------------
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+
+ROUND(MONTHS_BETWEEN(SYSDATE,'01-JAN-2011')*30)
+-----------------------------------------------
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+
+ROUND(MONTHS_BETWEEN(SYSDATE,'01-JAN-2011')*30)
+-----------------------------------------------
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+                                           2886
+
+107 rows selected.
+
+SQL> select first_name,round(months_between(sysdate,'01-JAN-2011')*30) from employees;
+
+FIRST_NAME           ROUND(MONTHS_BETWEEN(SYSDATE,'01-JAN-2011')*30)
+-------------------- -----------------------------------------------
+Ellen                                                           2886
+Sundar                                                          2886
+Mozhe                                                           2886
+David                                                           2886
+Hermann                                                         2886
+Shelli                                                          2886
+Amit                                                            2886
+Elizabeth                                                       2886
+Sarah                                                           2886
+David                                                           2886
+Laura                                                           2886
+
+FIRST_NAME           ROUND(MONTHS_BETWEEN(SYSDATE,'01-JAN-2011')*30)
+-------------------- -----------------------------------------------
+Harrison                                                        2886
+Alexis                                                          2886
+Anthony                                                         2886
+Gerald                                                          2886
+Nanette                                                         2886
+John                                                            2886
+Kelly                                                           2886
+Karen                                                           2886
+Curtis                                                          2886
+Lex                                                             2886
+Julia                                                           2886
+
+FIRST_NAME           ROUND(MONTHS_BETWEEN(SYSDATE,'01-JAN-2011')*30)
+-------------------- -----------------------------------------------
+Jennifer                                                        2886
+Louise                                                          2886
+Bruce                                                           2886
+Alberto                                                         2886
+Britney                                                         2886
+Daniel                                                          2886
+Pat                                                             2886
+Kevin                                                           2886
+Jean                                                            2886
+Tayler                                                          2886
+Adam                                                            2886
+
+FIRST_NAME           ROUND(MONTHS_BETWEEN(SYSDATE,'01-JAN-2011')*30)
+-------------------- -----------------------------------------------
+Timothy                                                         2886
+Ki                                                              2886
+Girard                                                          2886
+William                                                         2886
+Douglas                                                         2886
+Kimberely                                                       2886
+Nancy                                                           2886
+Danielle                                                        2886
+Peter                                                           2886
+Michael                                                         2886
+Shelley                                                         2886
+
+FIRST_NAME           ROUND(MONTHS_BETWEEN(SYSDATE,'01-JAN-2011')*30)
+-------------------- -----------------------------------------------
+Guy                                                             2886
+Alexander                                                       2886
+Alyssa                                                          2886
+Charles                                                         2886
+Vance                                                           2886
+Payam                                                           2886
+Alexander                                                       2886
+Janette                                                         2886
+Steven                                                          2886
+Neena                                                           2886
+Sundita                                                         2886
+
+FIRST_NAME           ROUND(MONTHS_BETWEEN(SYSDATE,'01-JAN-2011')*30)
+-------------------- -----------------------------------------------
+Renske                                                          2886
+James                                                           2886
+David                                                           2886
+Jack                                                            2886
+Diana                                                           2886
+Jason                                                           2886
+Steven                                                          2886
+James                                                           2886
+Mattea                                                          2886
+Randall                                                         2886
+Susan                                                           2886
+
+FIRST_NAME           ROUND(MONTHS_BETWEEN(SYSDATE,'01-JAN-2011')*30)
+-------------------- -----------------------------------------------
+Samuel                                                          2886
+Allan                                                           2886
+Irene                                                           2886
+Kevin                                                           2886
+Julia                                                           2886
+Donald                                                          2886
+Christopher                                                     2886
+TJ                                                              2886
+Lisa                                                            2886
+Karen                                                           2886
+Valli                                                           2886
+
+FIRST_NAME           ROUND(MONTHS_BETWEEN(SYSDATE,'01-JAN-2011')*30)
+-------------------- -----------------------------------------------
+Joshua                                                          2886
+Randall                                                         2886
+Hazel                                                           2886
+Luis                                                            2886
+Trenna                                                          2886
+Den                                                             2886
+Michael                                                         2886
+John                                                            2886
+Nandita                                                         2886
+Ismael                                                          2886
+John                                                            2886
+
+FIRST_NAME           ROUND(MONTHS_BETWEEN(SYSDATE,'01-JAN-2011')*30)
+-------------------- -----------------------------------------------
+Sarath                                                          2886
+Lindsey                                                         2886
+William                                                         2886
+Stephen                                                         2886
+Martha                                                          2886
+Patrick                                                         2886
+Jonathon                                                        2886
+Winston                                                         2886
+Sigal                                                           2886
+Peter                                                           2886
+Oliver                                                          2886
+
+FIRST_NAME           ROUND(MONTHS_BETWEEN(SYSDATE,'01-JAN-2011')*30)
+-------------------- -----------------------------------------------
+Jose Manuel                                                     2886
+Peter                                                           2886
+Clara                                                           2886
+Shanta                                                          2886
+Alana                                                           2886
+Matthew                                                         2886
+Jennifer                                                        2886
+Eleni                                                           2886
+
+107 rows selected.
+
+SQL> select first_name,round(months_between(sysdate,'01-JAN-2011')*30) days from employees;
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Ellen                      2886
+Sundar                     2886
+Mozhe                      2886
+David                      2886
+Hermann                    2886
+Shelli                     2886
+Amit                       2886
+Elizabeth                  2886
+Sarah                      2886
+David                      2886
+Laura                      2886
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Harrison                   2886
+Alexis                     2886
+Anthony                    2886
+Gerald                     2886
+Nanette                    2886
+John                       2886
+Kelly                      2886
+Karen                      2886
+Curtis                     2886
+Lex                        2886
+Julia                      2886
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Jennifer                   2886
+Louise                     2886
+Bruce                      2886
+Alberto                    2886
+Britney                    2886
+Daniel                     2886
+Pat                        2886
+Kevin                      2886
+Jean                       2886
+Tayler                     2886
+Adam                       2886
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Timothy                    2886
+Ki                         2886
+Girard                     2886
+William                    2886
+Douglas                    2886
+Kimberely                  2886
+Nancy                      2886
+Danielle                   2886
+Peter                      2886
+Michael                    2886
+Shelley                    2886
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Guy                        2886
+Alexander                  2886
+Alyssa                     2886
+Charles                    2886
+Vance                      2886
+Payam                      2886
+Alexander                  2886
+Janette                    2886
+Steven                     2886
+Neena                      2886
+Sundita                    2886
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Renske                     2886
+James                      2886
+David                      2886
+Jack                       2886
+Diana                      2886
+Jason                      2886
+Steven                     2886
+James                      2886
+Mattea                     2886
+Randall                    2886
+Susan                      2886
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Samuel                     2886
+Allan                      2886
+Irene                      2886
+Kevin                      2886
+Julia                      2886
+Donald                     2886
+Christopher                2886
+TJ                         2886
+Lisa                       2886
+Karen                      2886
+Valli                      2886
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Joshua                     2886
+Randall                    2886
+Hazel                      2886
+Luis                       2886
+Trenna                     2886
+Den                        2886
+Michael                    2886
+John                       2886
+Nandita                    2886
+Ismael                     2886
+John                       2886
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Sarath                     2886
+Lindsey                    2886
+William                    2886
+Stephen                    2886
+Martha                     2886
+Patrick                    2886
+Jonathon                   2886
+Winston                    2886
+Sigal                      2886
+Peter                      2886
+Oliver                     2886
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Jose Manuel                2886
+Peter                      2886
+Clara                      2886
+Shanta                     2886
+Alana                      2886
+Matthew                    2886
+Jennifer                   2886
+Eleni                      2886
+
+107 rows selected.
+
+SQL> select first_name,round(months_between(sysdate,'01-JAN-2011')/12) days from employees;
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Ellen                         8
+Sundar                        8
+Mozhe                         8
+David                         8
+Hermann                       8
+Shelli                        8
+Amit                          8
+Elizabeth                     8
+Sarah                         8
+David                         8
+Laura                         8
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Harrison                      8
+Alexis                        8
+Anthony                       8
+Gerald                        8
+Nanette                       8
+John                          8
+Kelly                         8
+Karen                         8
+Curtis                        8
+Lex                           8
+Julia                         8
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Jennifer                      8
+Louise                        8
+Bruce                         8
+Alberto                       8
+Britney                       8
+Daniel                        8
+Pat                           8
+Kevin                         8
+Jean                          8
+Tayler                        8
+Adam                          8
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Timothy                       8
+Ki                            8
+Girard                        8
+William                       8
+Douglas                       8
+Kimberely                     8
+Nancy                         8
+Danielle                      8
+Peter                         8
+Michael                       8
+Shelley                       8
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Guy                           8
+Alexander                     8
+Alyssa                        8
+Charles                       8
+Vance                         8
+Payam                         8
+Alexander                     8
+Janette                       8
+Steven                        8
+Neena                         8
+Sundita                       8
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Renske                        8
+James                         8
+David                         8
+Jack                          8
+Diana                         8
+Jason                         8
+Steven                        8
+James                         8
+Mattea                        8
+Randall                       8
+Susan                         8
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Samuel                        8
+Allan                         8
+Irene                         8
+Kevin                         8
+Julia                         8
+Donald                        8
+Christopher                   8
+TJ                            8
+Lisa                          8
+Karen                         8
+Valli                         8
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Joshua                        8
+Randall                       8
+Hazel                         8
+Luis                          8
+Trenna                        8
+Den                           8
+Michael                       8
+John                          8
+Nandita                       8
+Ismael                        8
+John                          8
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Sarath                        8
+Lindsey                       8
+William                       8
+Stephen                       8
+Martha                        8
+Patrick                       8
+Jonathon                      8
+Winston                       8
+Sigal                         8
+Peter                         8
+Oliver                        8
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Jose Manuel                   8
+Peter                         8
+Clara                         8
+Shanta                        8
+Alana                         8
+Matthew                       8
+Jennifer                      8
+Eleni                         8
+
+107 rows selected.
+
+SQL> select first_name,round(months_between(sysdate,'01-JAN-2011')) days from employees;
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Ellen                        96
+Sundar                       96
+Mozhe                        96
+David                        96
+Hermann                      96
+Shelli                       96
+Amit                         96
+Elizabeth                    96
+Sarah                        96
+David                        96
+Laura                        96
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Harrison                     96
+Alexis                       96
+Anthony                      96
+Gerald                       96
+Nanette                      96
+John                         96
+Kelly                        96
+Karen                        96
+Curtis                       96
+Lex                          96
+Julia                        96
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Jennifer                     96
+Louise                       96
+Bruce                        96
+Alberto                      96
+Britney                      96
+Daniel                       96
+Pat                          96
+Kevin                        96
+Jean                         96
+Tayler                       96
+Adam                         96
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Timothy                      96
+Ki                           96
+Girard                       96
+William                      96
+Douglas                      96
+Kimberely                    96
+Nancy                        96
+Danielle                     96
+Peter                        96
+Michael                      96
+Shelley                      96
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Guy                          96
+Alexander                    96
+Alyssa                       96
+Charles                      96
+Vance                        96
+Payam                        96
+Alexander                    96
+Janette                      96
+Steven                       96
+Neena                        96
+Sundita                      96
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Renske                       96
+James                        96
+David                        96
+Jack                         96
+Diana                        96
+Jason                        96
+Steven                       96
+James                        96
+Mattea                       96
+Randall                      96
+Susan                        96
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Samuel                       96
+Allan                        96
+Irene                        96
+Kevin                        96
+Julia                        96
+Donald                       96
+Christopher                  96
+TJ                           96
+Lisa                         96
+Karen                        96
+Valli                        96
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Joshua                       96
+Randall                      96
+Hazel                        96
+Luis                         96
+Trenna                       96
+Den                          96
+Michael                      96
+John                         96
+Nandita                      96
+Ismael                       96
+John                         96
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Sarath                       96
+Lindsey                      96
+William                      96
+Stephen                      96
+Martha                       96
+Patrick                      96
+Jonathon                     96
+Winston                      96
+Sigal                        96
+Peter                        96
+Oliver                       96
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Jose Manuel                  96
+Peter                        96
+Clara                        96
+Shanta                       96
+Alana                        96
+Matthew                      96
+Jennifer                     96
+Eleni                        96
+
+107 rows selected.
+
+SQL> select first_name,round(months_between(sysdate,'01-JAN-2011')*30) days from employees;
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Ellen                      2886
+Sundar                     2886
+Mozhe                      2886
+David                      2886
+Hermann                    2886
+Shelli                     2886
+Amit                       2886
+Elizabeth                  2886
+Sarah                      2886
+David                      2886
+Laura                      2886
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Harrison                   2886
+Alexis                     2886
+Anthony                    2886
+Gerald                     2886
+Nanette                    2886
+John                       2886
+Kelly                      2886
+Karen                      2886
+Curtis                     2886
+Lex                        2886
+Julia                      2886
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Jennifer                   2886
+Louise                     2886
+Bruce                      2886
+Alberto                    2886
+Britney                    2886
+Daniel                     2886
+Pat                        2886
+Kevin                      2886
+Jean                       2886
+Tayler                     2886
+Adam                       2886
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Timothy                    2886
+Ki                         2886
+Girard                     2886
+William                    2886
+Douglas                    2886
+Kimberely                  2886
+Nancy                      2886
+Danielle                   2886
+Peter                      2886
+Michael                    2886
+Shelley                    2886
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Guy                        2886
+Alexander                  2886
+Alyssa                     2886
+Charles                    2886
+Vance                      2886
+Payam                      2886
+Alexander                  2886
+Janette                    2886
+Steven                     2886
+Neena                      2886
+Sundita                    2886
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Renske                     2886
+James                      2886
+David                      2886
+Jack                       2886
+Diana                      2886
+Jason                      2886
+Steven                     2886
+James                      2886
+Mattea                     2886
+Randall                    2886
+Susan                      2886
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Samuel                     2886
+Allan                      2886
+Irene                      2886
+Kevin                      2886
+Julia                      2886
+Donald                     2886
+Christopher                2886
+TJ                         2886
+Lisa                       2886
+Karen                      2886
+Valli                      2886
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Joshua                     2886
+Randall                    2886
+Hazel                      2886
+Luis                       2886
+Trenna                     2886
+Den                        2886
+Michael                    2886
+John                       2886
+Nandita                    2886
+Ismael                     2886
+John                       2886
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Sarath                     2886
+Lindsey                    2886
+William                    2886
+Stephen                    2886
+Martha                     2886
+Patrick                    2886
+Jonathon                   2886
+Winston                    2886
+Sigal                      2886
+Peter                      2886
+Oliver                     2886
+
+FIRST_NAME                 DAYS
+-------------------- ----------
+Jose Manuel                2886
+Peter                      2886
+Clara                      2886
+Shanta                     2886
+Alana                      2886
+Matthew                    2886
+Jennifer                   2886
+Eleni                      2886
+
+107 rows selected.
+
+SQL> select round(months_between(sysdate,'01-JAN-2011')*30) days from dual;
+
+      DAYS
+----------
+      2886
+
+SQL>
+SQL> create or replace function cube_fun(a number)
+  2  return number
+  3  as
+  4  begin
+  5  return a*a*a;
+  6  end;
+  7  /
+
+Function created.
+
+SQL> execute cube_fun(4) from dual;
+BEGIN cube_fun(4) from dual; END;
+
+                  *
+ERROR at line 1:
+ORA-06550: line 1, column 19:
+PLS-00103: Encountered the symbol "FROM" when expecting one of the following:
+:= . ( % ;
+The symbol ":= was inserted before "FROM" to continue.
+
+
+SQL> execute cube_fun(4) from dual;
+BEGIN cube_fun(4) from dual; END;
+
+                  *
+ERROR at line 1:
+ORA-06550: line 1, column 19:
+PLS-00103: Encountered the symbol "FROM" when expecting one of the following:
+:= . ( % ;
+The symbol ":= was inserted before "FROM" to continue.
+
+
+SQL> select cube_fun(4) from dual;
+
+CUBE_FUN(4)
+-----------
+         64
+
+SQL>
+SQL> create or replace function total_fun(a number)
+  2  return number
+  3  as
+  4  begin
+  5  select count(*) into a from employees where employee_id=a;
+  6  return a;
+  7  end;
+  8  /
+
+Warning: Function created with compilation errors.
+
+SQL>
+SQL> create or replace function total_fun(tot number)
+  2  return number
+  3  as
+  4
+  5  declare
+  6  vtot number(2);
+  7  begin
+  8  select count(*) into vtot from employees where employee_id=a;
+  9  return a;
+ 10  end;
+ 11  /
+
+Warning: Function created with compilation errors.
+
+SQL> create or replace function total_fun(a number)
+  2  return number
+  3  as
+  4  vtot number(4);
+  5  begin
+  6  select count(employee_id) into vtot from employees where employee_id=a;
+  7  return a;
+  8  end;
+  9  /
+
+Function created.
+
+SQL> select total_fun(110) from dual;
+
+TOTAL_FUN(110)
+--------------
+           110
+
+SQL> select total_fun(110) from employees;
+
+TOTAL_FUN(110)
+--------------
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+
+TOTAL_FUN(110)
+--------------
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+
+TOTAL_FUN(110)
+--------------
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+
+TOTAL_FUN(110)
+--------------
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+
+TOTAL_FUN(110)
+--------------
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+
+TOTAL_FUN(110)
+--------------
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+
+TOTAL_FUN(110)
+--------------
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+
+TOTAL_FUN(110)
+--------------
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+
+TOTAL_FUN(110)
+--------------
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+
+TOTAL_FUN(110)
+--------------
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+           110
+
+107 rows selected.
+
+SQL> create or replace function total_fun(a number)
+  2  return number
+  3  as
+  4  vtot number(4);
+  5  begin
+  6  select count(employee_id) into vtot from employees where employee_id=a;
+  7  return vtot;
+  8  end;
+  9  /
+
+Function created.
+
+SQL> select total_fun(110) from dual;
+
+TOTAL_FUN(110)
+--------------
+             1
+
+SQL> select total_fun(110) from employees;
+
+TOTAL_FUN(110)
+--------------
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+
+TOTAL_FUN(110)
+--------------
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+
+TOTAL_FUN(110)
+--------------
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+
+TOTAL_FUN(110)
+--------------
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+
+TOTAL_FUN(110)
+--------------
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+
+TOTAL_FUN(110)
+--------------
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+
+TOTAL_FUN(110)
+--------------
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+
+TOTAL_FUN(110)
+--------------
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+
+TOTAL_FUN(110)
+--------------
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+
+TOTAL_FUN(110)
+--------------
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+             1
+
+107 rows selected.
+
+SQL> select total_fun(110) from dual;
+
+TOTAL_FUN(110)
+--------------
+             1
+
+SQL> select total_fun(50) from dual;
+
+TOTAL_FUN(50)
+-------------
+            0
+
+SQL> create or replace function total_fun(a number)
+  2  return number
+  3  as
+  4  vtot number(4);
+  5  begin
+  6  select count(employee_id) into vtot from employees where department_id=a;
+  7  return vtot;
+  8  end;
+  9  /
+
+Function created.
+
+SQL> select total_fun(50) from dual;
+
+TOTAL_FUN(50)
+-------------
+           45
+
+SQL> select total_fun(110) from dual;
+
+TOTAL_FUN(110)
+--------------
+             2
+
+SQL> select total_fun(50) from employees;
+
+TOTAL_FUN(50)
+-------------
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+
+TOTAL_FUN(50)
+-------------
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+
+TOTAL_FUN(50)
+-------------
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+
+TOTAL_FUN(50)
+-------------
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+
+TOTAL_FUN(50)
+-------------
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+
+TOTAL_FUN(50)
+-------------
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+
+TOTAL_FUN(50)
+-------------
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+
+TOTAL_FUN(50)
+-------------
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+
+TOTAL_FUN(50)
+-------------
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+
+TOTAL_FUN(50)
+-------------
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+           45
+
+107 rows selected.
+
+SQL>
+SQL> create or replace function total_fun(a number)
+  2  return number
+  3  as
+  4  vtot number(4);
+  5  vresult number(4);
+  6  begin
+  7  vresult:=cube_fun(6);
+  8  dbms_output.put_line('res is '||vresult);
+  9  select count(employee_id) into vtot from employees where department_id=a;
+ 10  return vtot;
+ 11  end;
+ 12  /
+
+Function created.
+
+SQL> select total_fun(50) from dual;
+
+TOTAL_FUN(50)
+-------------
+           45
+
+res is 216
+SQL> select object_name from all_objects where owner='HR' and object_type='FUNCTION';
+
+OBJECT_NAME
+------------------------------
+CUBE_FUN
+TOTAL_FUN
+
+SQL> select text from all_source where type='FUNCTION' and name='CUBE_FUN';
+
+TEXT
+--------------------------------------------------------------------------------
+function cube_fun(a number)
+return number
+as
+begin
+return a*a*a;
+end;
+
+6 rows selected.
+
+SQL> select text from all_source where type='FUNCTION' and name='TOTAL_FUN';
+
+TEXT
+--------------------------------------------------------------------------------
+function total_fun(a number)
+return number
+as
+vtot number(4);
+vresult number(4);
+begin
+vresult:=cube_fun(6);
+dbms_output.put_line('res is '||vresult);
+select count(employee_id) into vtot from employees where department_id=a;
+return vtot;
+end;
+
+11 rows selected.
+
+SQL> SELECT OBJECT_NAME,PROCEDURE_NAME FROM USER_PROCEDURES;
+
+OBJECT_NAME                    PROCEDURE_NAME
+------------------------------ ------------------------------
+SECURE_DML
+ADD_JOB_HISTORY
+PROCE2
+OUT_DEMO
+CUBE_FUN
+TOTAL_FUN
+
+6 rows selected.
+
+SQL> SELECT text from user_source;
+
+TEXT
+--------------------------------------------------------------------------------
+PROCEDURE secure_dml
+IS
+BEGIN
+  IF TO_CHAR (SYSDATE, 'HH24:MI') NOT BETWEEN '08:00' AND '18:00'
+        OR TO_CHAR (SYSDATE, 'DY') IN ('SAT', 'SUN') THEN
+        RAISE_APPLICATION_ERROR (-20205,
+                'You may only make changes during normal office hours');
+  END IF;
+END secure_dml;
+TRIGGER secure_employees
+  BEFORE INSERT OR UPDATE OR DELETE ON employees
+
+TEXT
+--------------------------------------------------------------------------------
+BEGIN
+  secure_dml;
+END secure_employees;
+PROCEDURE add_job_history
+  (  p_emp_id          job_history.employee_id%type
+   , p_start_date      job_history.start_date%type
+   , p_end_date        job_history.end_date%type
+   , p_job_id          job_history.job_id%type
+   , p_department_id   job_history.department_id%type
+   )
+IS
+
+TEXT
+--------------------------------------------------------------------------------
+BEGIN
+  INSERT INTO job_history (employee_id, start_date, end_date,
+                           job_id, department_id)
+    VALUES(p_emp_id, p_start_date, p_end_date, p_job_id, p_department_id);
+END add_job_history;
+TRIGGER update_job_history
+  AFTER UPDATE OF job_id, department_id ON employees
+  FOR EACH ROW
+BEGIN
+  add_job_history(:old.employee_id, :old.hire_date, sysdate,
+                  :old.job_id, :old.department_id);
+
+TEXT
+--------------------------------------------------------------------------------
+END;
+procedure proce1
+begin
+dbms_output.put_line('bad sal');
+end;
+procedure proce2(pename varchar2, incr number)
+as
+vsal employees.salary%type;
+begin
+select salary into vsal from employees where first_name=pename;
+if(vsal<9000) then
+
+TEXT
+--------------------------------------------------------------------------------
+update employees set salary=salary+incr where first_name=pename;
+  dbms_output.put_line('old salary ' ||vsal);
+select salary into vsal from employees where first_name=pename;
+  dbms_output.put_line('new  salary ' ||vsal);
+
+end if;
+end;
+procedure out_demo(pdno number, ptot out number)
+as
+begin
+select count(employee_id) into ptot from employees where department_id = pdno;
+
+TEXT
+--------------------------------------------------------------------------------
+end;
+function cube_fun(a number)
+return number
+as
+begin
+return a*a*a;
+end;
+function total_fun(a number)
+return number
+as
+vtot number(4);
+
+TEXT
+--------------------------------------------------------------------------------
+vresult number(4);
+begin
+vresult:=cube_fun(6);
+dbms_output.put_line('res is '||vresult);
+select count(employee_id) into vtot from employees where department_id=a;
+return vtot;
+end;
+
+73 rows selected.
+
+SQL> SELECT text from user_source
+  2  where type='PROCEDURE'
+  3  Aand name='PROCE1';
+Aand name='PROCE1'
+*
+ERROR at line 3:
+ORA-00933: SQL command not properly ended
+
+
+SQL> SELECT text from user_source
+  2  where type='PROCEDURE'
+  3  and name='PROCE1';
+
+TEXT
+--------------------------------------------------------------------------------
+procedure proce1
+begin
+dbms_output.put_line('bad sal');
+end;
+
+SQL> SELECT text from user_source
+  2  where type='PROCEDURE'
+  3  and name='PROCE4';
+
+no rows selected
+
+SQL> --EXCEPTION
+SQL> DECLARE
+  2  vsal number(10.2);
+  3  BEGIN
+  4  select salary into vsal from employees where first_name='Nabi';
+  5  END;
+  6  /
+vsal number(10.2);
+            *
+ERROR at line 2:
+ORA-06550: line 2, column 13:
+PLS-00325: non-integral numeric literal 10.2 is inappropriate in this context
+ORA-06550: line 2, column 6:
+PL/SQL: Item ignored
+ORA-06550: line 4, column 20:
+PLS-00320: the declaration of the type of this expression is incomplete or
+malformed
+ORA-06550: line 4, column 25:
+PL/SQL: ORA-00904: : invalid identifier
+ORA-06550: line 4, column 1:
+PL/SQL: SQL Statement ignored
+
+
+SQL> vsal number(10.2);declare
+SP2-0734: unknown command beginning "vsal numbe..." - rest of line ignored.
+SQL> vsal number(10.2);
+SP2-0734: unknown command beginning "vsal numbe..." - rest of line ignored.
+SQL> BEGIN
+  2  select salary into vsal from employees where first_name='Nabi';
+  3  END;
+  4  /
+select salary into vsal from employees where first_name='Nabi';
+                   *
+ERROR at line 2:
+ORA-06550: line 2, column 20:
+PLS-00201: identifier 'VSAL' must be declared
+ORA-06550: line 2, column 25:
+PL/SQL: ORA-00904: : invalid identifier
+ORA-06550: line 2, column 1:
+PL/SQL: SQL Statement ignored
+
+
+SQL> --EXCEPTION
+SQL> declare
+  2  vsal number(10,2);
+  3  BEGIN
+  4  select salary into vsal from employees where first_name='Melissa';
+  5  END;
+  6  /
+declare
+*
+ERROR at line 1:
+ORA-01403: no data found
+ORA-06512: at line 4
+
+
+SQL> declare
+  2  vsal number(10,2);
+  3  BEGIN
+  4  select salary into vsal from employees where first_name='Melissa';
+  5  exception
+  6  when no_data_found then
+  7  dbms_output.put_line('there is no employee present wih the given name');
+  8  end;
+  9  /
+there is no employee present wih the given name
+
+PL/SQL procedure successfully completed.
+
+SQL> --EXCEPTION
+SQL> declare
+  2  vsal number(10,2);
+  3  BEGIN
+  4  select salary into vsal from employees;
+  5  exception
+  6  when too_many_rows then
+  7  dbms_output.put_line('there are too many rows as result');
+  8  end;
+  9  /
+there are too many rows as result
+
+PL/SQL procedure successfully completed.
+
+SQL> --EXCEPTION
+SQL> declare
+  2  a number(10,2);
+  3  b number(10,2);
+  4  BEGIN
+  5  a:=0;
+  6  b:=a/0;
+  7  dbms_output.put_line(b);
+  8  --exception
+  9  --when too_many_rows then
+ 10  --dbms_output.put_line('there are too many rows as result');
+ 11  end;
+ 12  /
+declare
+*
+ERROR at line 1:
+ORA-01476: divisor is equal to zero
+ORA-06512: at line 6
+
+
+SQL> declare
+  2  a number(10,2);
+  3  b number(10,2);
+  4  BEGIN
+  5  a:=0;
+  6  b:=a/0;
+  7  dbms_output.put_line(b);
+  8  exception
+  9  when zero_divide then
+ 10  dbms_output.put_line('cannot be divided by zero');
+ 11  end;
+ 12  /
+cannot be divided by zero
+
+PL/SQL procedure successfully completed.
+
+SQL> select salary from employees where first_name='Valli';
+
+    SALARY
+----------
+      6800
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select salary from employees where first_name='Valli';
+
+    SALARY
+----------
+      6800
+
+SQL> update employees set salary=4800 where first_name='Valli';
+
+1 row updated.
+
+SQL> select salary from employees where first_name='Valli';
+
+    SALARY
+----------
+      4800
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select salary from employees where first_name='Valli';
+
+    SALARY
+----------
+      4800
+
+SQL> declare
+  2  vsal number(10,2);
+  3  lowsal exception;
+  4  begin
+  5  select salary into vsal from employees where first_name='Valli';
+  6  if vsal<30000 then
+  7  raise lowsal;
+  8  end if;
+  9  exception
+ 10  when lowsal then
+ 11  dbms_output.put_line('the sal is very low');
+ 12  end;
+ 13  /
+the sal is very low
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2  vsal number(10,2);
+  3  lowsal exception;
+  4  highsal exception;
+  5  begin
+  6  select salary into vsal from employees where first_name='Valli';
+  7  if vsal<30000 then
+  8  raise lowsal;
+  9  end if;
+ 10  if vsal>30000 then
+ 11  raise highsal;
+ 12  end if;
+ 13  exception
+ 14  when lowsal then
+ 15  dbms_output.put_line('the sal is very low');
+ 16  when highsal then
+ 17  dbms_output.put_line('the sal is very high');
+ 18  end;
+ 19  /
+the sal is very low
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2  vsal number(10,2);
+  3  lowsal exception;
+  4  highsal exception;
+  5  begin
+  6  select salary into vsal from employees where first_name='Valli';
+  7  if vsal<3000 then
+  8  raise lowsal;
+  9  end if;
+ 10  if vsal>30000 then
+ 11  raise highsal;
+ 12  end if;
+ 13  exception
+ 14  when lowsal then
+ 15  dbms_output.put_line('the sal is very low');
+ 16  when highsal then
+ 17  dbms_output.put_line('the sal is very high');
+ 18  end;
+ 19  /
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2  vsal number(10,2);
+  3  lowsal exception;
+  4  highsal exception;
+  5  begin
+  6  select salary into vsal from employees where first_name='Valli';
+  7  if vsal<3000 then
+  8  raise lowsal;
+  9  end if;
+ 10  if vsal>30000 then
+ 11  raise highsal;
+ 12  end if;
+ 13  exception
+ 14  when lowsal then
+ 15  dbms_output.put_line('the sal is very low');
+ 16
+ 17  exception
+ 18  when highsal then
+ 19  dbms_output.put_line('the sal is very high');
+ 20  end;
+ 21  /
+exception
+*
+ERROR at line 17:
+ORA-06550: line 17, column 1:
+PLS-00103: Encountered the symbol "EXCEPTION" when expecting one of the
+following:
+begin case declare end exit for goto if loop mod null pragma
+raise return select update when while with <an identifier>
+<a double-quoted delimited-identifier> <a bind variable> <<
+close current delete fetch lock insert open rollback
+savepoint set sql execute commit forall merge pipe
+ORA-06550: line 20, column 4:
+PLS-00103: Encountered the symbol "end-of-file" when expecting one of the
+following:
+end not pragma final instantiable order overriding static
+member constructor map
+
+
+SQL> declare
+  2  vsal number(10,2);
+  3  lowsal exception;
+  4  highsal exception;
+  5  begin
+  6  select salary into vsal from employees where first_name='Valli';
+  7  if vsal<5000 then
+  8  raise lowsal;
+  9  end if;
+ 10  if vsal>30000 then
+ 11  raise highsal;
+ 12  end if;
+ 13  exception
+ 14  when lowsal then
+ 15  dbms_output.put_line('the sal is very low');
+ 16
+ 17  when highsal then
+ 18  dbms_output.put_line('the sal is very high');
+ 19  end;
+ 20  /
+the sal is very low
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2  vsal number(10,2);
+  3  lowsal exception;
+  4  highsal exception;
+  5  begin
+  6  select salary into vsal from employees where first_name='Valli';
+  7  if vsal>35000 then
+  8  raise lowsal;
+  9  end if;
+ 10  if vsal>3000 then
+ 11  raise highsal;
+ 12  end if;
+ 13  exception
+ 14  when lowsal then
+ 15  dbms_output.put_line('the sal is very low');
+ 16
+ 17  when highsal then
+ 18  dbms_output.put_line('the sal is very high');
+ 19  end;
+ 20  /
+the sal is very high
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from emp2;
+
+ENAME                                        SALARY      EMPNO
+---------------------------------------- ---------- ----------
+pr                                            40000          1
+pr                                            40000          2
+pr                                            40000          3
+pr                                            40000          4
+pr                                            40000         22
+
+SQL> select * from emp1;
+select * from emp1
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select * from emp;
+
+     EMPNO        SAL PAN                      DEPTNO CITY
+---------- ---------- -------------------- ---------- --------------------
+        10      40000 123tfgh                      10 bang
+        20      44000 124tfgh                      10 bang
+
+SQL> --TRIGGER
+SQL>
+SQL> create or replace trigger tr1
+  2  before insert on emp2
+  3  begin
+  4  dbms_output.put_line('this is insert trigger');
+  5  end;
+  6  /
+
+Trigger created.
+
+SQL> insert into emp2 values('melissa',5000,5);
+this is insert trigger
+
+1 row created.
+
+SQL> insert into emp2 values('nelissa',4000,6);
+this is insert trigger
+
+1 row created.
+
+SQL> create or replace trigger tr1
+  2  before delete  on emp2
+  3  begin
+  4  dbms_output.put_line('this is delete trigger');
+  5  end;
+  6  /
+
+Trigger created.
+
+SQL> delete * from emp2 where ename='nelissa';
+delete * from emp2 where ename='nelissa'
+       *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> delete  from emp2 where ename='nelissa';
+this is delete trigger
+
+1 row deleted.
+
+SQL> create or replace trigger tr1
+  2  before update  on emp2
+  3  begin
+  4  dbms_output.put_line('this is update trigger');
+  5  end;
+  6  /
+
+Trigger created.
+
+SQL> update emp2 set salary=6000 where ename='melissa';
+this is update trigger
+
+1 row updated.
+
+SQL> drop trigger tr1;
+
+Trigger dropped.
+
+SQL> .
+SQL> select
+  2  create or replace trigger tr1
+  3  before update  on emp2
+  4  begin
+  5   raise_application_error(-20201,'cannot delete the record');
+create or replace trigger tr1
+*
+ERROR at line 2:
+ORA-00936: missing expression
+
+
+SQL> end;
+SP2-0042: unknown command "end" - rest of line ignored.
+SQL> /
+create or replace trigger tr1
+*
+ERROR at line 2:
+ORA-00936: missing expression
+
+
+SQL> create or replace trigger tr1
+  2  before delete on emp2
+  3  begin
+  4   raise_application_error(-20201,'cannot delete the record');
+  5  end;
+  6  /
+
+Trigger created.
+
+SQL> delete from emp2 where ename='melissa';
+delete from emp2 where ename='melissa'
+            *
+ERROR at line 1:
+ORA-20201: cannot delete the record
+ORA-06512: at "HR.TR1", line 2
+ORA-04088: error during execution of trigger 'HR.TR1'
+
+
+SQL> drop trigger tr1;
+
+Trigger dropped.
+
+SQL> select * from emp
+  2  ;
+
+     EMPNO        SAL PAN                      DEPTNO CITY
+---------- ---------- -------------------- ---------- --------------------
+        10      40000 123tfgh                      10 bang
+        20      44000 124tfgh                      10 bang
+
+SQL> select * from emp2;
+
+ENAME                                        SALARY      EMPNO
+---------------------------------------- ---------- ----------
+pr                                            40000          1
+pr                                            40000          2
+pr                                            40000          3
+pr                                            40000          4
+pr                                            40000         22
+melissa                                        6000          5
+
+6 rows selected.
+
+SQL> before delete on emp2
+SP2-0734: unknown command beginning "before del..." - rest of line ignored.
+SQL> create trigger tr1
+  2  before update on emp2
+  3  begin
+  4  if(:old.salary >:new.salary)
+  5   then
+  6  raise_application_error(-20201,'update is not allowed');
+  7  end if;
+  8  end;
+  9  /
+create trigger tr1
+               *
+ERROR at line 1:
+ORA-04082: NEW or OLD references not allowed in table level triggers
+
+
+SQL>
+SQL> create  or replace trigger tr1
+  2  before update on emp2
+  3  begin
+  4  if(:old.salary >:new.salary)
+  5   then
+  6  raise_application_error(-20201,'update is not allowed');
+  7  end if;
+  8  end;
+  9  /
+create  or replace trigger tr1
+                           *
+ERROR at line 1:
+ORA-04082: NEW or OLD references not allowed in table level triggers
+
+
+SQL> drop trigger tr1;
+drop trigger tr1
+*
+ERROR at line 1:
+ORA-04080: trigger 'TR1' does not exist
+
+
+SQL> create  or replace trigger tr2
+  2  before update on emp2 for each row
+  3  begin
+  4  if(:old.salary >:new.salary)
+  5   then
+  6  raise_application_error(-20201,'update is not allowed');
+  7  end if;
+  8  end;
+  9  /
+
+Trigger created.
+
+SQL> update emp2 set salary=salary-1000 where empno=2;
+update emp2 set salary=salary-1000 where empno=2
+       *
+ERROR at line 1:
+ORA-20201: update is not allowed
+ORA-06512: at "HR.TR2", line 4
+ORA-04088: error during execution of trigger 'HR.TR2'
+
+
+SQL> drop trigger tr2;
+
+Trigger dropped.
+
+SQL> create  or replace trigger tr2
+  2  before update on emp2 for each row
+  3  begin
+  4  if(:old.salary >:new.salary)
+  5   then
+  6  raise_application_error(-20201,'update is not allowed');
+  7  end if;
+  8  end;
+  9  /
+
+Trigger created.
+
+SQL> update emp2 set salary=salary-1000 where empno=2;
+update emp2 set salary=salary-1000 where empno=2
+       *
+ERROR at line 1:
+ORA-20201: update is not allowed
+ORA-06512: at "HR.TR2", line 4
+ORA-04088: error during execution of trigger 'HR.TR2'
+
+
+SQL>
+SQL>
+SQL> auditcreate table log_table(
+SP2-0734: unknown command beginning "auditcreat..." - rest of line ignored.
+SQL> username varchar2(30),
+SP2-0734: unknown command beginning "username v..." - rest of line ignored.
+SQL> op_date date,
+SP2-0734: unknown command beginning "op_date da..." - rest of line ignored.
+SQL> operation char(2),
+SP2-0734: unknown command beginning "operation ..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL> create table log_table(
+  2  username varchar2(30),
+  3  op_date date,
+  4  operation char(2),
+  5  table_name varchar2(30));
+
+Table created.
+
+SQL> create or replace trigger up_tr
+  2  before update or insert or delete on emp2
+  3  begin
+  4  if updating then
+  5  insert into log_table values(user,sysdate,'U','EMP');
+  6  end if;
+  7
+  8  if inserting then
+  9  insert into log_table values(user,sysdate,'I','EMP');
+ 10  end if;
+ 11  if deleting then
+ 12  insert into log_table values(user,sysdate,'D','EMP');
+ 13  end if;
+ 14  end;
+ 15  /
+
+Trigger created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL>
